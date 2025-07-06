@@ -1,5 +1,6 @@
-package com.example.demo.users;
+package com.example.demo.entity;
 
+import com.example.demo.dto.MembersDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +18,10 @@ public class Members {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nickname")
+    @Column(name = "nickname", unique = true)
     private String nickname;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private String userId;
 
     @Column(name = "password")
@@ -32,14 +33,15 @@ public class Members {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public static Members toMembers(MembersDTO membersDTO) {
-        Members members = new Members();
-        members.setId(membersDTO.getId());
-        members.setNickname(membersDTO.getNickname());
-        members.setPassword(membersDTO.getPassword());
-        members.setCreatedAt(membersDTO.getCreatedAt());
-
-        return members;
+    public MembersDTO toDTO() {
+        MembersDTO dto = new MembersDTO();
+        dto.setId(this.id);
+        dto.setUserId(this.userId);
+        dto.setPassword(""); // password는 보안상 숨김
+        dto.setNickname(this.nickname);
+        dto.setCreatedAt(this.createdAt);
+        dto.setUpdatedAt(this.updatedAt);
+        return dto;
     }
 
 }
