@@ -14,23 +14,20 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @ToString
-public class MembersDTO {
+public class SignupDTO {
 
-    private Integer id;
     private String nickname;
     private String userId;
     private String password;
     private String passwordConfirm;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     public Members toEntity(PasswordEncoder encoder) {
         Members members = new Members();
         members.setNickname(this.nickname);
         members.setUserId(this.userId);
         members.setPassword(encoder.encode(this.password));
-        members.setCreatedAt(this.createdAt);
-        members.setUpdatedAt(this.updatedAt);
+        members.setCreatedAt(LocalDateTime.now());
+        members.setUpdatedAt(LocalDateTime.now());
         return members;
     }
 
