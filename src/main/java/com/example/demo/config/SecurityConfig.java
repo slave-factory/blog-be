@@ -38,6 +38,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        System.out.println("authenticationManager bean 생성됨");
         return config.getAuthenticationManager();
     }
 }
