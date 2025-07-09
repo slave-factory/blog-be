@@ -61,8 +61,6 @@ public class MembersController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
-        System.out.println("login 요청 들어옴");
-        System.out.println(authenticationManager.getClass().getName());
         try{
             // 아이디 비번 유효성 검사
             Authentication auth = authenticationManager.authenticate(loginDTO.toAuthToken());
@@ -78,7 +76,6 @@ public class MembersController {
             ));
 
         } catch (Exception e) {
-            e.printStackTrace();
             throw new CustomException("아이디 또는 비밀번호가 잘못됨", 401); // 401 unauthorized
         }
 
