@@ -36,11 +36,11 @@ public class MembersController {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body(Map.of(
-                        "message", "2개의 비밀번호가 일치하지 않습니다"
+                        "error", "2개의 비밀번호가 일치하지 않습니다"
                     ));
         }
 
-        // 아이디 존재 확인
+        // 아이디 or 별명 존재 확인
         try{
             membersService.create(signupDTO);
         }
@@ -54,8 +54,10 @@ public class MembersController {
         }
 
         // 201 created "회원가입 성공"
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
-                "message", "회원가입 성공"
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Map.of(
+                        "message", "회원가입 성공"
         ));
     }
 
@@ -64,11 +66,15 @@ public class MembersController {
         try{
             // 아이디 비번 유효성 검사
             Authentication auth = authenticationManager.authenticate(loginDTO.toAuthToken());
+            // 인증 정보 저장
             SecurityContextHolder.getContext().setAuthentication(auth);
             // 세션 생성
-            request.getSession(true);
+            HttpSession session = request.getSession(true);
+            // SecurityContext 저장
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
 
             CustomMemberDetails memberDetails = (CustomMemberDetails) auth.getPrincipal();
+
             return ResponseEntity.ok(Map.of(
                     "message", "로그인 성공",
                     "nickname", memberDetails.getNickname(),

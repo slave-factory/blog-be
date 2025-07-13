@@ -27,10 +27,10 @@ public class SecurityConfig {
                 .httpBasic(basic -> basic.disable()) // basic 인증 비활성화
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/comments/**").authenticated() // 댓글 기능 비활성화
-                        .requestMatchers(HttpMethod.POST, "/api/posts").authenticated() // 글 작성 기능 비활성화
-                        .requestMatchers(HttpMethod.PUT, "/api/posts").authenticated() // 글 수정 기능 비활성화
-                        .requestMatchers(HttpMethod.DELETE, "/api/posts").authenticated() // 글 삭제 기능 비활성화
-                        .anyRequest().permitAll() // 나머지 다 활성화(특정 글 보기, 글 목록 보기)
+                        .requestMatchers(HttpMethod.POST, "/api/posts").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/posts").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/posts").authenticated()
+                        .anyRequest().permitAll()
                 )
                 // 요청시 세션 생성, 저장, 인증 상태 유지
                 .sessionManagement(session -> session

@@ -1,9 +1,11 @@
 package com.example.demo.entity;
 
+import com.example.demo.dto.PostsDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -39,5 +41,11 @@ public class Posts {
 
 //    @ManyToOne
 //    private Members member;
+
+    public void update(PostsDTO dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.updatedAt = LocalDateTime.now();
+    }
 
 }

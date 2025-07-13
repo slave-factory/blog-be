@@ -12,12 +12,26 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
 
-    public Posts createPosts(PostsDTO postsDTO) {
+    public Long createPosts(PostsDTO postsDTO) {
 
         // 에러 메세지 없음
         Posts post = postsDTO.toEntity();
         postsRepository.save(post);
 
-        return post;
+        return post.getId();
     }
+
+    public void putPosts(Long id, PostsDTO postsDTO) {
+
+        Posts post = postsRepository.findById(id).orElse(null);
+
+        if(post == null) {
+            throw new IllegalArgumentException("게시글을 찾을 수 없습니다");
+        }
+
+        post.update(postsDTO);
+        postsRepository.save(post);
+
+    }
+
 }

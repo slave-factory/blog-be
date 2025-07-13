@@ -29,4 +29,5 @@ public class PostsDTO {
         posts.setCommentCount(0);
         return posts;
     }
+
 }
