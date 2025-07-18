@@ -1,9 +1,18 @@
 /**
  * @introduce
- *  - 글 업로드 등에 사용되는 dto <br>
- *  - PostsDTO.java
- *
- *
+ * <p>
+ *     <ul>
+ *         <li>글 업로드 등에 필요한 dto</li>
+ *         <li>PostsRequestDTO.java</li>
+ *     </ul>
+ * </p>
+ * <p>variables
+ * <ul>
+ *     <li>authorId</li>
+ *     <li>title</li>
+ *     <li>content</li>
+ * </ul>
+ * </p>
  *
  * @author Hwang junsik
  */

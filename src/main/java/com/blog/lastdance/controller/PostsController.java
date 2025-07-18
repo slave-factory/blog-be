@@ -110,6 +110,13 @@ public class PostsController {
 
     /**
      * 글 삭제 요청을 처리하는 메서드 (/api/posts/{id})
+     * <hr>
+     * <p>
+     *     detail
+     *     <ul>
+     *         <li>client가 소유한 post의 기본키를 이용해 해당 글을 삭제(해당 글이 없다면 예외 발생)</li>
+     *     </ul>
+     * </p>
      * @param id 삭제할 글의 기본키
      * @return
      * <ul>
@@ -144,6 +151,36 @@ public class PostsController {
 
     }
 
+    /**
+     * 모든 글의 목록 보기 요청을 처리하는 메서드 (/api/posts)
+     * <hr>
+     * <p>
+     *     detail
+     *     <ul>
+     *         <li>데이터베이스에 존재하는 모든 글을 리스트 형태로 반환</li>
+     *     </ul>
+     * </p>
+     * @return
+     * <ul>
+     *     <li><pre>success: {@code
+     *     [
+     *          {
+     *              "id": 1,
+     *              "title": "제목1",
+     *              "content": "내용1",
+     *              "author": "별명1"
+     *
+     *          },
+     *          {
+     *              "id": 2,
+     *              "title": "제목2",
+     *              "content": "내용2",
+     *              "author": "별명2"
+     *          }
+     *     ]
+     *     }</pre></li>
+     * </ul>
+     */
     @GetMapping("/posts")
     public ResponseEntity<List<PostsResponseDTO>> getAllPosts() {
 
@@ -155,6 +192,35 @@ public class PostsController {
 
     }
 
+    /**
+     * 특정 글 보기 요청을 처리하는 메서드 (/api/posts/{id})
+     * <hr>
+     * <p>
+     *     detail
+     *     <ul>
+     *         <li>client가 가지고 있는 post의 기본키를 이용해 특정 글을 반환(글이 존재하지 않으면 예외 발생)</li>
+     *     </ul>
+     * </p>
+     * @param id 조회할 특정 글의 기본키
+     * @return
+     * <ul>
+     *     <li>success: <pre>{@code
+     *     {
+     *         "id": id,
+     *         "title": "제목",
+     *         "content": "내용",
+     *         "author": "별명",
+     *         "createdAt": 업로드 시간,
+     *         "updatedAt": 수정 시간
+     *     }
+     *     }</pre></li>
+     *     <li>fail: <pre>{@code
+     *     {
+     *          "error": "게시글을 찾을 수 없습니다"
+     *     }
+     *     }</pre></li>
+     * </ul>
+     */
     @GetMapping("/posts/{id}")
     public ResponseEntity<PostsDetailDTO> getPosts(@PathVariable Long id) {
 

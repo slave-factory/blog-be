@@ -1,3 +1,23 @@
+/**
+ * @introduce
+ * <p>
+ *     <ul>
+ *         <li>회원가입에 필요한 dto</li>
+ *         <li>SignupDTO.java</li>
+ *     </ul>
+ * </p>
+ * <p>variables
+ * <ul>
+ *     <li>nickname</li>
+ *     <li>userId</li>
+ *     <li>password</li>
+ *     <li>passwordConfirm</li>
+ * </ul>
+ * </p>
+ *
+ * @author Hwang junsik
+ */
+
 package com.blog.lastdance.dto.memberdto;
 
 import com.blog.lastdance.entity.Members;
@@ -21,6 +41,11 @@ public class SignupDTO {
     private String password;
     private String passwordConfirm;
 
+    /**
+     * dto를 엔티티로 변환하는 메서드
+     * @param encoder 비밀번호를 암호화하기 위한 passwordEncoder
+     * @return dto를 엔티티로 만들어서 반환(Members)
+     */
     public Members toEntity(PasswordEncoder encoder) {
         Members members = new Members();
         members.setNickname(this.nickname);

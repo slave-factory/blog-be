@@ -39,9 +39,6 @@ public class Posts {
     @Column(name = "author_Id")
     private Long authorId;
 
-//    @ManyToOne
-//    private Members member;
-
     public void update(PostsRequestDTO dto) {
         this.title = dto.getTitle();
         this.content = dto.getContent();
