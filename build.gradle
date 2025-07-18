@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(24)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
@@ -36,6 +36,16 @@ dependencies {
 
 	testImplementation 'org.junit.jupiter:junit-jupiter'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// 타임리프(템플릿 엔진)
+//	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+	// spring boot validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//spring security(회원 기능을 위해)
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
